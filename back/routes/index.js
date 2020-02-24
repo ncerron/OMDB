@@ -53,31 +53,28 @@ router.post('/user/:userId', ()=>{
 
 
 //favourites
-router.post('/favourite/add', () => {
-  console.log(req.body)
-  Favourite.create(req.body)
-    .then(favourite => {
-      res.send(favourite);
-    })
+router.post('/favourite/add', (req, res, next) => {
+  const movie = {
+    idFavourite: req.body.imdbID,
+    title: req.body.Title,
+    year: req.body.Year
+}
+  Favourite.create(movie)
+    .then(favourite => res.send(favourite))
 })
 
 
 
-//elimina de favoritos y luego actualiza la lista
-router.post('/favourite/delete/:favouriteId/:userId', () => {
+//elimina de favoritos 
+router.get('/favourite/delete/:id', (req, res) => {
   Favourite.destroy({
     where: {
-      id: req.params.favouriteId
+      id: req.params.id
     }
   })
-    .then(() => {
-      User.findAll({
-        where: {
-          id: req.params.userId
-        }
-      })
-    })
+ .then(() => res.send(req.params.id))
 })
+
 
 
 module.exports = router;
