@@ -1,7 +1,8 @@
 const initialState = {
   films:[],
   favourites:[],
-  movie:{}
+  movie:{},
+  user:{}
 };
 
 export default (state = initialState, action) => {
@@ -26,7 +27,11 @@ export default (state = initialState, action) => {
         ...state,
         favourites: state.favourites.filter(item => item.id !== action.movie)
       };
-
+      case "LOGIN":
+        return {
+          ...state,
+          user: action.user
+        };
     default:
       return state;
   }

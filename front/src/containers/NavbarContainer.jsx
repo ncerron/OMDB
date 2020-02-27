@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Navbar from '../components/Navbar'
-import {fetchSearch} from '../redux/actions'
+import {fetchSearch} from '../redux/actions/movie'
 import { withRouter } from 'react-router-dom';
 
 class NavbarContainer extends Component {

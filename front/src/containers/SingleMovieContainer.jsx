@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import SingleMovie from "../components/SingleMovie";
-import { fetchMovie, addMovie, deleteMovie } from "../redux/actions";
+import { fetchMovie, addMovie, deleteMovie } from "../redux/actions/movie";
 
 class SingleMovieContainer extends Component {
   constructor(props) {
@@ -16,13 +16,17 @@ class SingleMovieContainer extends Component {
   }
 
   handleClickAdd() {
-    this.props.addFavourite(this.props.movie);
+    //busca que no este ya elegida la pelicula
+    const found = this.props.favourites.find(
+      element => element.idFavourite == this.props.movie.imdbID
+    );
+
+    !found ? this.props.addFavourite(this.props.movie) : null;
   }
 
   handleClickDelete(item) {
     this.props.deleteFavourite(item);
   }
-
 
   render() {
     return (

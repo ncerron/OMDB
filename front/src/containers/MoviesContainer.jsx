@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import Movies from '../components/Movies'
-import {deleteMovie } from "../redux/actions";
+import {deleteMovie } from "../redux/actions/movie";
 
 class MoviesContainer extends Component {
     constructor(props) {
