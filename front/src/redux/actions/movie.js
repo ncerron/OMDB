@@ -20,7 +20,11 @@
    movie
  });
 
- 
+ const receiveFavourite = movie => ({
+  type: "RECEIVE_FAVOURITE",
+  movie
+});
+
 
  export const fetchSearch = data => dispatch =>
    axios.get(`http://www.omdbapi.com/?s=${data}&apikey=50ff056b`).then(res => {
@@ -42,4 +46,7 @@
      dispatch(deleteFavouriteMovie(res.data));
    }); 
   
-
+   export const fetchFavourite = data => dispatch =>
+   axios.get(`/api/favourite/favourites/${data}`).then(res => {
+     dispatch(receiveFavourite(res.data));
+   }); 

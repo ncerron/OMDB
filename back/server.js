@@ -6,15 +6,22 @@ const bodyParser = require("body-parser");
 const passport = require('passport')
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+//const flash = require("connect-flash")//no stoy usando
+const morgan = require("morgan");
+const { User} = require("./db/index");
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
-
-app.use(session({ secret: 'kitty',resave: true, saveUninitialized:true})); 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({ secret: 'kitty',resave: true, saveUninitialized:true}));
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session())
+
+app.use(morgan("dev"));
+
+//app.use(flash());
+ 
 
 app.use("/api", require("./routes"));
 app.get("/*", (req, res) => {

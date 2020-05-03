@@ -28,10 +28,17 @@ class NavbarContainer extends Component {
 
     render() {
         return (
-            <Navbar onSubmit={this.onSubmit} handleChange={this.handleChange}/>
+            <Navbar onSubmit={this.onSubmit}
+             handleChange={this.handleChange}
+             user={this.props.user}
+             />
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    user: state.user
+  })
 
 const mapDispachToProps = dispatch => {
     return {
@@ -41,4 +48,4 @@ const mapDispachToProps = dispatch => {
     }
 }
 
-export default withRouter(connect(null, mapDispachToProps)(NavbarContainer))
+export default withRouter(connect(mapStateToProps, mapDispachToProps)(NavbarContainer))

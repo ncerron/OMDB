@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-router.use('/', require('./user'));  
-router.use('/', require("./favourite"))
+router.use('/user', require('./user'));  
+router.use('/favourite', require("./favourite"))
 
 module.exports = router;
 

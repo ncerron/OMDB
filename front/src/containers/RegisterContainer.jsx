@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Home from '../components/Home'
+import Login from '../components/Login'
 
 
 class RegisterContainer extends Component {
@@ -41,21 +41,18 @@ class RegisterContainer extends Component {
 
     onSubmit(e) {
         e.preventDefault()
-
-        this.props.history.push('/movies');
-
+        this.props.history.push('/login');
     }
 
     render() {
         return (
-            <Home type={"register"}
+            <Login type={"register"}
                 handleChangeEmail={this.handleChangeEmail}
                 handleChangePassword={this.handleChangePassword}
                 handleEmail={this.handleEmail}
                 error={this.state.error}
-
             >
-                ></Home>
+            ></Login>
         )
     }
 }

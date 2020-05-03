@@ -6,7 +6,6 @@ import { fetchMovie, addMovie, deleteMovie } from "../redux/actions/movie";
 class SingleMovieContainer extends Component {
   constructor(props) {
     super(props);
-
     this.handleClickAdd = this.handleClickAdd.bind(this);
     this.handleClickDelete = this.handleClickDelete.bind(this);
   }

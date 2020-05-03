@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 export default function Navbar(props) {
+ 
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
       <div className="container">
@@ -38,17 +39,26 @@ export default function Navbar(props) {
             </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <li className="nav-item">
+           
+            {props.user.id? <li>
+              <Link
+                to="/logOut"
+                className="nav-link"
+              >
+                LogOut
+                </Link>
+            </li> :  <li className="nav-item">
               <Link
                 to={{
-                  pathname: `/`,
+                  pathname: `/login`,
                   state: { type: "login" }
                 }}
                 className="nav-link"
               >
                 Login
                 </Link>
-            </li>
+            </li>}
+
           </ul>
         </div>
       </div>

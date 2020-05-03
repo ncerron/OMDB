@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import Movies from '../components/Movies'
-import {deleteMovie } from "../redux/actions/movie";
+import {deleteMovie, fetchFavourite } from "../redux/actions/movie";
 
 class MoviesContainer extends Component {
     constructor(props) {
         super(props)
         this.handleClickDelete = this.handleClickDelete.bind(this);
+    }
+  
+    componentDidMount() {
+        if (this.props.user.id) {
+            this.props.fetchFavourites(this.props.user.id)
+        }
     }
 
     handleClickDelete(item) {
@@ -14,6 +20,7 @@ class MoviesContainer extends Component {
       }
 
     render() {
+        console.log(this.props.favourites)
         return (
             <Movies films={this.props.films} 
             favourites ={this.props.favourites }
@@ -25,14 +32,16 @@ class MoviesContainer extends Component {
 
 const mapStateToProps = (state) => ({
     films: state.films,
-    favourites:state.favourites 
+    favourites:state.favourites, 
+    user: state.user
 })
 
 const mapDispatchToProps = dispatch => {
     return {
       deleteFavourite: value => {
           dispatch(deleteMovie(value));
-        }
+        },
+        fetchFavourites: value => dispatch(fetchFavourite(value))
     };
   };
 

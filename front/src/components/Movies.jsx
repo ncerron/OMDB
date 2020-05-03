@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
-export default function Movies({ films, favourites, handleClickDelete }) {
+export default function Movies({ films, favourites, handleClickDelete}) {
     return (
         <div className="container ">
             <div className="row">
+           {/*  <h1 className="text-center mt-3" style={{ color: "#af9abbde" }}>Movies</h1> */}
                 <div className="col-sm-10 mt-5 card-group " >
+                {films.Error && films.Error? <h3 style={{ color: "#af9abbde" }}>{films.Error}</h3>:null}
                     {films.Search && films.Search.map(m =>
                         <Link to={`/singleMovie/${m.imdbID}`} key={m.imdbID}>
                             <div id="card" className="card mr-2 mb-2" style={{ width: "15rem", height: "20rem" }}>
