@@ -37,6 +37,17 @@ export default (state = initialState, action) => {
         ...state,
         favourites: action.movie
       };
+      case "LOGOUT":
+        return {
+          ...state,
+          user: action.user
+        };
+        case "CLEAR_FAVOURITE":
+          return {
+            ...state,
+            favourites: action.movie
+          };
+
     default:
       return state;
   }

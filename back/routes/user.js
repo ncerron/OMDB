@@ -26,7 +26,7 @@ router.post("/register", (req, res) => {
 
 router.get("/logOut", function(req, res) {
   req.logout();
-  res.send("logged Out"); 
+  res.send("logout")
 });
 
 
@@ -49,9 +49,7 @@ router.post('/logIn',function(req, res, next) {
 });
 
 
-
-
-/* router.post("/:userId", () => {
+router.get("/:userId", (req, res, next) => {
   User.findAll({
     where: {
       id: req.params.userId
@@ -62,7 +60,8 @@ router.post('/logIn',function(req, res, next) {
       console.log(err, "error busqueda ");
       res.status(400).send("No se encontraron coincidencias");
     });
-});*/
+});
+
 
 router.get('/me', (req, res) => {
   res.send(req.user)

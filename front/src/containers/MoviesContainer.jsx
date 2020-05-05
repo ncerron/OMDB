@@ -9,12 +9,6 @@ class MoviesContainer extends Component {
         this.handleClickDelete = this.handleClickDelete.bind(this);
     }
   
-    componentDidMount() {
-        if (this.props.user.id) {
-            this.props.fetchFavourites(this.props.user.id)
-        }
-    }
-
     handleClickDelete(item) {
         this.props.deleteFavourite(item);
       }
@@ -41,7 +35,6 @@ const mapDispatchToProps = dispatch => {
       deleteFavourite: value => {
           dispatch(deleteMovie(value));
         },
-        fetchFavourites: value => dispatch(fetchFavourite(value))
     };
   };
 

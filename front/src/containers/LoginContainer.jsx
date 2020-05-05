@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { logIn } from "../redux/actions/user";
 import Login from "../components/Login"
+import { fetchFavourite } from "../redux/actions/movie";
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -48,6 +49,9 @@ class LoginContainer extends Component {
         this.setState({ passError: "" })
         this.props.logIn(this.state).then(() => {
           if (!this.props.user.message) {
+            //guarda en el local storage el usario para persistir 
+            localStorage.setItem("user", JSON.stringify(this.props.user.id));
+            localStorage.setItem("favourite", JSON.stringify(this.props.fetchFavourites(this.props.user.id)));
             this.props.history.push('/movies')
           }
         })
@@ -80,6 +84,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispachToProps = () => dispatch => ({
   logIn: value => dispatch(logIn(value)),
+  fetchFavourites: value => dispatch(fetchFavourite(value))
 })
 
 export default connect(mapStateToProps, mapDispachToProps)(LoginContainer)

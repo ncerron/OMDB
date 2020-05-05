@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 export default function Navbar(props) {
- 
   return (
+  
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
       <div className="container">
         <Link to={{
@@ -39,25 +39,26 @@ export default function Navbar(props) {
             </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-           
-            {props.user.id? <li>
+
+            {props.user.id ? <li>
               <Link
-                to="/logOut"
+                onClick={props.logOut}
+                to="/"
                 className="nav-link"
               >
                 LogOut
                 </Link>
-            </li> :  <li className="nav-item">
-              <Link
-                to={{
-                  pathname: `/login`,
-                  state: { type: "login" }
-                }}
-                className="nav-link"
-              >
-                Login
+            </li> : <li className="nav-item">
+                <Link
+                  to={{
+                    pathname: `/login`,
+                    state: { type: "login" }
+                  }}
+                  className="nav-link"
+                >
+                  Login
                 </Link>
-            </li>}
+              </li>}
 
           </ul>
         </div>

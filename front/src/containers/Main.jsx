@@ -6,20 +6,26 @@ import HomeContainer from './HomeContainer'
 import SingleMovieContainer from './SingleMovieContainer';
 import RegisterContainer from './RegisterContainer';
 import LoginContainer from './LoginContainer';
-import { fetchUser  } from "../redux/actions/user";
+import { searchUser } from "../redux/actions/user";
 import { connect } from 'react-redux'
-
+import { fetchFavourite } from "../redux/actions/movie";
 
 class Main extends Component {
-    /* componentDidMount() {
-        this.props.fetchUser()
-    } */
+    componentDidMount() {
+        /*Obtener datos almacenados en localStorage*/
+        var userIdLS = localStorage.getItem("user");
+        var userId = JSON.parse(userIdLS)
+      
+        if (userId) {
+            this.props.fetchFavourites(userId)
+            this.props.searchUser(userId)
+        }
+    } 
 
     render() {
-        
         return (
             <div>
-                <NavbarContainer /* user={this.props.user} *//>
+                <NavbarContainer/>
                 <Switch>
                     <Route exact path="/" component={HomeContainer} />
                     <Route exact path="/movies" component={MoviesContainer} />
@@ -38,9 +44,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchUser: () => {
-            dispatch(fetchUser())
-        }
+        searchUser: data => {
+            dispatch(searchUser(data))
+        },
+        fetchFavourites: value => dispatch(fetchFavourite(value))
     }
 }
 
