@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import SingleMovie from "../components/SingleMovie";
 import { fetchMovie, addMovie, deleteMovie } from "../redux/actions/movie";
+import Swal from "sweetalert2";
 
 class SingleMovieContainer extends Component {
   constructor(props) {
@@ -15,12 +16,31 @@ class SingleMovieContainer extends Component {
   }
 
   handleClickAdd() {
-    //busca que no este ya elegida la pelicula
-    const found = this.props.favourites.find(
-      element => element.idFavourite == this.props.movie.imdbID
-    );
-
-    !found ? this.props.addFavourite(this.props.movie) : null;
+    //si no esta logueado que no tenga funcionalidad el boton
+    if (this.props.user.id) {
+      //busca que no este ya elegida la pelicula
+      const found = this.props.favourites.find(
+        element => element.idFavourite == this.props.movie.imdbID);
+      if (!found) {
+        this.props.addFavourite(this.props.movie)
+      } else {
+        Swal.fire({
+          title: "",
+          text: "There is already such the movie",
+          width: 300,
+          confirmButtonColor: "#4b3558de",
+          confirmButtonText: "Ok"
+        })
+      }
+    } else {
+      Swal.fire({
+        title: "",
+        text: "Please login",
+        width: 200,
+        confirmButtonColor: "#4b3558de",
+        confirmButtonText: "Ok"
+      })
+    }
   }
 
   handleClickDelete(item) {
@@ -41,7 +61,9 @@ class SingleMovieContainer extends Component {
 
 const mapStateToProps = state => ({
   movie: state.movie,
-  favourites: state.favourites
+  favourites: state.favourites,
+  user: state.user
+
 });
 
 const mapDispatchToProps = dispatch => {
@@ -53,8 +75,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(addMovie(value));
     },
     deleteFavourite: value => {
-        dispatch(deleteMovie(value));
-      }
+      dispatch(deleteMovie(value));
+    }
   };
 };
 

@@ -1,8 +1,10 @@
 const initialState = {
-  films:[],
-  favourites:[],
-  movie:{},
-  user:{}
+  films: [],
+  favourites: [],
+  movie: {},
+  user: {},
+  user_register: {},
+  search:{}
 };
 
 export default (state = initialState, action) => {
@@ -10,44 +12,54 @@ export default (state = initialState, action) => {
     case "RECEIVE_FILMS":
       return {
         ...state,
-        films: action.films
+        films: action.films,
       };
     case "RECEIVE_MOVIE":
       return {
         ...state,
-        movie: action.movie
+        movie: action.movie,
       };
     case "ADD_FAVOURITE":
       return {
         ...state,
-        favourites: [...state.favourites, action.movie]
+        favourites: [...state.favourites, action.movie],
       };
     case "DELETE_FAVOURITE":
       return {
         ...state,
-        favourites: state.favourites.filter(item => item.id !== action.movie)
+        favourites: state.favourites.filter((item) => item.id !== action.movie),
       };
-      case "LOGIN":
-        return {
-          ...state,
-          user: action.user
-        };
-      case "RECEIVE_FAVOURITE":
+    case "LOGIN":
       return {
         ...state,
-        favourites: action.movie
+        user: action.user,
       };
-      case "LOGOUT":
+    case "RECEIVE_FAVOURITE":
+      return {
+        ...state,
+        favourites: action.movie,
+      };
+    case "LOGOUT":
+      return {
+        ...state,
+        user: action.user,
+      };
+    case "CLEAR_FAVOURITE":
+      return {
+        ...state,
+        favourites: action.movie,
+      };
+    case "REGISTER":
+      return {
+        ...state,
+        user_register: action.user,
+      };
+      case "SEARCH_USER":
         return {
           ...state,
-          user: action.user
+          search: action.user,
         };
-        case "CLEAR_FAVOURITE":
-          return {
-            ...state,
-            favourites: action.movie
-          };
-
+  
     default:
       return state;
   }

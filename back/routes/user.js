@@ -4,23 +4,15 @@ const {User} = require("../models")
 const passport = require("../config/passport");
 
 router.post("/register", (req, res) => {
-  if (req.body.email && req.body.password) {
-    User.create(req.body).then(user => {
-      res.send(user);
-    });
-    /*  .then(user =>
-            req.login(user, function(err) {
-              if (err) {
-                console.log(err);
-              } else {
-                res.status(201).send(user);
-              }
-            })
-          )
-          .catch(err => res.status(400).send(err));  */
-  } else {
-    res.status(400).send("Email and password are required.");
-  }
+  User.create(req.body)
+  .then(user => {
+    res.send(user);
+  })
+  .catch(err => {
+    console.log(err);
+    res.send(err);
+  });
+
 });
 
 
@@ -28,7 +20,6 @@ router.get("/logOut", function(req, res) {
   req.logout();
   res.send("logout")
 });
-
 
 /* router.post("/logIn", passport.authenticate("local"), function(req, res) {
   res.send(req.user);
@@ -62,12 +53,24 @@ router.get("/:userId", (req, res, next) => {
     });
 });
 
-
+/* 
 router.get('/me', (req, res) => {
   res.send(req.user)
 
 })
- 
+  */
 
+  router.get("/search/:userMail", (req, res, next) => {
+  User.findAll({
+    where: {
+      email: req.params.userMail
+    }
+  })
+    .then(users => res.json(users))
+    .catch(err => {
+      console.log(err, "error busqueda ");
+      res.status(400).send("No se encontraron coincidencias");
+    });
+});
 
 module.exports = router;

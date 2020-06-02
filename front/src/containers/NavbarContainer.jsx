@@ -9,11 +9,12 @@ class NavbarContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            valueToSearch: ""
+            valueToSearch:""
         };
         this.handleChange = this.handleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.hadleClickLogOut = this.hadleClickLogOut.bind(this);
+        this.cleanInput= this.cleanInput.bind(this);
     }
 
     handleChange(e) {
@@ -27,8 +28,12 @@ class NavbarContainer extends Component {
         this.props.history.push('/movies');
     }
 
+    cleanInput(){
+        this.setState({ valueToSearch: ""});
+    }
 
     hadleClickLogOut() {
+        this.setState({ valueToSearch: ""});
         this.props.logOut()
         this.props.clearFavourite()
     }
@@ -39,6 +44,8 @@ class NavbarContainer extends Component {
                 handleChange={this.handleChange}
                 user={this.props.user}
                 logOut={this.hadleClickLogOut}
+                inputValue={this.state.valueToSearch}
+                cleanInput={this.cleanInput}
             />
         )
     }

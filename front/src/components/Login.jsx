@@ -7,7 +7,7 @@ export default function Login(props) {
             <div className="input_login mx-auto mt-5">
                 <form className="form-group " onSubmit={props.onSubmit}>
                     {props.type == "register" ? <h3 className="text-center">Create Account</h3> : <h3 className="text-center">Login</h3>}
-                    {props.user.message !== "" ? <p className=" mt-3" id="error" style={{ height: "10px" }}>{props.user.message}</p> : <Redirect to="/movies" />}
+                    {props.user && props.user.message !== "" ? <p className=" mt-3" id="error" style={{ height: "10px" }}>{props.user.message}</p> : null} 
                     <input onBlur={props.handleEmail} onChange={props.handleChangeEmail} className="form-control mt-4" placeholder={"Email address"}></input>
                     {props.emailError !== "" ? <div id="error">{props.emailError}</div> : null}
                     <input onChange={props.handleChangePassword} className="form-control mt-2" placeholder={"Password"}></input>

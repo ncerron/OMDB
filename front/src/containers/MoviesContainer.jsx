@@ -14,7 +14,6 @@ class MoviesContainer extends Component {
       }
 
     render() {
-        console.log(this.props.favourites)
         return (
             <Movies films={this.props.films} 
             favourites ={this.props.favourites }
