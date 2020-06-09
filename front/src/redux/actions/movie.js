@@ -31,16 +31,14 @@ const clearFav = movie => ({
 });
 
  export const fetchSearch = data => dispatch =>
-   axios.get(`http://www.omdbapi.com/?s=${data}&apikey=${process.env.API_KEY}`).then(res => {
-     
+   axios.get(`http://www.omdbapi.com/?s=${data}&apikey=50ff056b`).then(res => {
      dispatch(receiveFilms(res.data));
    });
 
  export const fetchMovie = data => dispatch =>{
-  axios.get(`https://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${data}`).then(res => {
+  axios.get(`https://www.omdbapi.com/?apikey=50ff056b&i=${data}`).then(res => {
    dispatch(receiveMovie(res.data));
  }); 
-
  }
     
 
