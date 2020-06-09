@@ -1,5 +1,7 @@
 const Sequelize = require("sequelize");
-const db = new Sequelize("postgres://postgres:admin@localhost:5432/omdb", {
+const url = process.env.DATABASE_URL || "postgres://postgres:admin@localhost:5432/omdb"
+
+const db = new Sequelize(url, {
   logging: false,
 });
 

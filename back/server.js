@@ -6,9 +6,10 @@ const bodyParser = require("body-parser");
 const passport = require('passport')
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
-//const flash = require("connect-flash")//no stoy usando
 const morgan = require("morgan");
-const { User} = require("./db/index");
+
+
+require('dotenv').config()
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
@@ -19,10 +20,6 @@ app.use(passport.initialize());
 app.use(passport.session())
 
 app.use(morgan("dev"));
-
-//app.use(flash());
- 
-
 app.use("/api", require("./routes"));
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
@@ -31,7 +28,7 @@ app.get("/*", (req, res) => {
 db.sync({force:false})
 .then(
   ()=> {
-    console.log("conectando a base de datos")
+    console.log("conectando a base de datos", process.env.API_KEY )
     app.listen(3000)
   })
   .catch(error => {console.log(error)})
