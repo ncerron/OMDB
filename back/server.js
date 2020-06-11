@@ -8,6 +8,8 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const morgan = require("morgan");
 
+var cors = require('cors')
+app.use(cors())
 const port= process.env.PORT || 3000
 
 require('dotenv').config()

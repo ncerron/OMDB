@@ -30,6 +30,7 @@ const clearFav = movie => ({
   movie
 });
 
+
  export const fetchSearch = data => dispatch =>
    axios.get(`https://www.omdbapi.com/?s=${data}&apikey=${process.env.API_KEY}`).then(res => {
      dispatch(receiveFilms(res.data));

@@ -1,5 +1,8 @@
 import axios from "axios";
 
+
+
+
 export const receiveUser = (user) => ({
   type: "LOGIN",
   user,
@@ -24,9 +27,14 @@ export const search = (user) => ({
 
 
 
+const clienteAxios = axios.create({
+  baseURL : process.env.API_URL
+});
+
+
 
 export const logIn = (data) => (dispatch) =>
-  axios.post("/api/user/logIn", data).then((res) => {
+clienteAxios.post(`/api/user/logIn`, data).then((res) => {
     dispatch(receiveUser(res.data));
   });
 
@@ -50,7 +58,7 @@ export const searchUser = (userId) => (dispatch) =>
   });
 
 export const registerUser = (data) => (dispatch) =>
-  axios.post("/api/user/register",data).then((res) => {
+  axios.post(`/api/user/register`,data).then((res) => {
     dispatch(register(res.data));
   });
 
