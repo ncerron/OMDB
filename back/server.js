@@ -8,6 +8,8 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const morgan = require("morgan");
 
+require('dotenv').config()
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -25,7 +27,7 @@ app.get("/*", (req, res) => {
 db.sync({force:false})
 .then(
   ()=> {
-    console.log("conectando a base de datos", process.env.API_KEY )
+    console.log("conectando a base de datos")
     app.listen(3000)
   })
   .catch(error => {console.log(error)})

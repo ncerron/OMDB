@@ -2,7 +2,7 @@ import React from 'react'
 import { Link} from 'react-router-dom'
 
 export default function Movies({ films, favourites, handleClickDelete}) {
-    console.log(favourites)
+
     return (
         <div className="container ">
             <div className="row">

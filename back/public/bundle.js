@@ -34551,7 +34551,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43743,7 +43743,6 @@ function Movies(_ref) {
   var films = _ref.films,
       favourites = _ref.favourites,
       handleClickDelete = _ref.handleClickDelete;
-  console.log(favourites);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container "
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -44949,14 +44948,14 @@ var clearFav = function clearFav(movie) {
 
 var fetchSearch = function fetchSearch(data) {
   return function (dispatch) {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://www.omdbapi.com/?s=".concat(data, "&apikey=50ff056b")).then(function (res) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://www.omdbapi.com/?s=".concat(data, "&apikey=").concat("50ff056b")).then(function (res) {
       dispatch(receiveFilms(res.data));
     });
   };
 };
 var fetchMovie = function fetchMovie(data) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://www.omdbapi.com/?apikey=50ff056b&i=".concat(data)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://www.omdbapi.com/?apikey=".concat("50ff056b", "&i=").concat(data)).then(function (res) {
       dispatch(receiveMovie(res.data));
     });
   };
