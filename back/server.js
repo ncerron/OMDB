@@ -8,6 +8,8 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const morgan = require("morgan");
 
+const port= process.env.PORT || 3000
+
 require('dotenv').config()
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -28,7 +30,7 @@ db.sync({force:false})
 .then(
   ()=> {
     console.log("conectando a base de datos")
-    app.listen(3000)
+    app.listen(port,'0.0.0.0')
   })
   .catch(error => {console.log(error)})
 
