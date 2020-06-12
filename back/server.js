@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+
 const path = require("path");
 const db = require('./db')
 const bodyParser = require("body-parser");
@@ -9,7 +9,10 @@ const session = require("express-session");
 const morgan = require("morgan");
 
 var cors = require('cors')
+const app = express();
 app.use(cors())
+
+
 const port= process.env.PORT || 3000
 
 require('dotenv').config()
