@@ -45033,7 +45033,7 @@ var search = function search(user) {
   };
 };
 var clienteAxios = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
-  baseURL: "https://git.heroku.com/omdb9.git"
+  baseURL: "https://git.heroku.com/omdb9"
 });
 var logIn = function logIn(data) {
   return function (dispatch) {
