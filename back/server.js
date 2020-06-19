@@ -1,5 +1,5 @@
 const express = require('express');
-
+const app = express();
 const path = require("path");
 const db = require('./db')
 const bodyParser = require("body-parser");
@@ -7,21 +7,14 @@ const passport = require('passport')
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const morgan = require("morgan");
+const cors = require('cors')
 
-var cors = require('cors')
-const app = express();
 app.use(cors())
-
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 const port= process.env.PORT || 3000
 
 require('dotenv').config()
+
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());

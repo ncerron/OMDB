@@ -25,12 +25,17 @@ export const search = (user) => ({
   user
 });
 
+let API_URL
 
+if (process.env.NODE_ENV == 'production') {
+  API_URL=process.env.API_URL
+}else{
+  API_URL="http://localhost:3000"
+}
 
 const clienteAxios = axios.create({
-  baseURL : process.env.API_URL
+  baseURL : API_URL
 });
-
 
 
 export const logIn = (data) => (dispatch) =>
@@ -58,7 +63,7 @@ export const searchUser = (userId) => (dispatch) =>
   });
 
 export const registerUser = (data) => (dispatch) =>
-  axios.post(`/api/user/register`,data).then((res) => {
+clienteAxios.post(`/api/user/register`,data).then((res) => {
     dispatch(register(res.data));
   });
 

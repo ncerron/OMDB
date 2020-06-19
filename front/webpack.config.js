@@ -29,5 +29,8 @@ module.exports = {
   plugins: [
     new Dotenv()
   ],
-  devtool: 'source-map'
+  devtool: 'source-map',
+  performance : {
+    hints : false
+}  
 }
