@@ -39,8 +39,7 @@ class LoginContainer extends Component {
       email: e.target.value
     })
   }
-
-  //lala@lala.com
+  
   onSubmit(e) {
     e.preventDefault()
     if (this.state.email != "") {
@@ -53,6 +52,8 @@ class LoginContainer extends Component {
             localStorage.setItem("user", JSON.stringify(this.props.user.id));
             localStorage.setItem("favourite", JSON.stringify(this.props.fetchFavourites(this.props.user.id)));
             this.props.history.push('/movies')
+          }else{
+            console.log(this.props.user.message)
           }
         })
       } else {

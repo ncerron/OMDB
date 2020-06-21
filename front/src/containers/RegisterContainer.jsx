@@ -89,7 +89,7 @@ class RegisterContainer extends Component {
                 passError={this.state.passError}
                 onSubmit={this.onSubmit}
             >
-                ></Login>
+                </Login>
         )
     }
 }

@@ -30,6 +30,17 @@ const clearFav = movie => ({
   movie
 });
 
+let API_URL
+
+if (process.env.NODE_ENV == 'production') {
+  API_URL=process.env.API_URL
+}else{
+  API_URL="http://localhost:3000"
+}
+
+const clienteAxios = axios.create({
+  baseURL : API_URL
+});
 
  export const fetchSearch = data => dispatch =>
    axios.get(`https://www.omdbapi.com/?s=${data}&apikey=${process.env.API_KEY}`).then(res => {
@@ -43,17 +54,17 @@ const clearFav = movie => ({
  }
     
  export const addMovie = data => dispatch =>
-   axios.post(`/api/favourite/add`, data).then(res => {
+ clienteAxios.post(`/api/favourite/add`, data).then(res => {
      dispatch(addFavouriteMovie(res.data));
    });
 
  export const deleteMovie = data => dispatch =>
-   axios.get(`/api/favourite/delete/${data}`).then(res => {
+ clienteAxios.get(`/api/favourite/delete/${data}`).then(res => {
      dispatch(deleteFavouriteMovie(res.data));
    }); 
   
    export const fetchFavourite = data => dispatch =>
-   axios.get(`/api/favourite/favourites/${data}`).then(res => {
+   clienteAxios.get(`/api/favourite/favourites/${data}`).then(res => {
      dispatch(receiveFavourite(res.data));
    }); 
 

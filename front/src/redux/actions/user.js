@@ -1,8 +1,5 @@
 import axios from "axios";
 
-
-
-
 export const receiveUser = (user) => ({
   type: "LOGIN",
   user,
@@ -17,8 +14,6 @@ export const register= (user) => ({
   type: "REGISTER",
   user
 });
-
-
 
 export const search = (user) => ({
   type: "SEARCH_USER",
@@ -44,7 +39,7 @@ clienteAxios.post(`/api/user/logIn`, data).then((res) => {
   });
 
 export const logOutUser = () => (dispatch) =>
-  axios.get("/api/user/logOut").then(() => {
+clienteAxios.get("/api/user/logOut").then(() => {
     dispatch(logout({}));
   });
 
@@ -58,7 +53,7 @@ export const logOutUser = () => (dispatch) =>
 
 //para buscar usuario usando localStorage
 export const searchUser = (userId) => (dispatch) =>
-  axios.get(`/api/user/${userId}`).then((res) => {
+clienteAxios.get(`/api/user/${userId}`).then((res) => {
     dispatch(receiveUser(res.data[0]));
   });
 
@@ -68,6 +63,6 @@ clienteAxios.post(`/api/user/register`,data).then((res) => {
   });
 
   export const searchUserRegister= (userMail) => (dispatch) =>
-  axios.get(`/api/user/search/${userMail}`).then((res) => {
+  clienteAxios.get(`/api/user/search/${userMail}`).then((res) => {
     dispatch(search(res.data));
   });

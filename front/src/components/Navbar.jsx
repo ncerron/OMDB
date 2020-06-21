@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 export default function Navbar(props) {
  
   return (
-  
+
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
       <div className="container">
         <Link to={{
           pathname: `/`,
-          state:null,
+          state: null,
         }}
-        onClick={props.cleanInput}
-        className="navbar-brand mt-n1">
+          onClick={props.cleanInput}
+          className="navbar-brand mt-n1">
           Home
           </Link>
         <button
@@ -42,8 +42,8 @@ export default function Navbar(props) {
               </form>
             </li>
           </ul>
+          <ul className="navbar-nav mr-auto">{props.user.email ? <span>Hello!! {props.user.email}</span> : null}</ul>
           <ul className="nav navbar-nav navbar-right">
-
             {props.user.id ? <li>
               <Link
                 onClick={props.logOut}
@@ -63,7 +63,6 @@ export default function Navbar(props) {
                   Login
                 </Link>
               </li>}
-
           </ul>
         </div>
       </div>
